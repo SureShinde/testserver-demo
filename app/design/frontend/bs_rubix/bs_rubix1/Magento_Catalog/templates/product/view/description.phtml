@@ -1,0 +1,46 @@
+<?php
+$_product = $block->getProduct();
+$categories = $_product->getCategoryIds();
+$des = array();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+	if($cat->getSpecificTextAttribute() != ''){
+		$des[] = strip_tags($cat->getSpecificTextAttribute());
+		break;
+	}
+}
+$om = \Magento\Framework\App\ObjectManager::getInstance();
+$manager = $om->get('Magento\Store\Model\StoreManagerInterface');
+$storeId = $manager->getStore()->getId();
+
+if($_product->getData('tipologia') != ''){
+	$optionTexttipologia = $_product->getResource()->getAttribute('tipologia')->setStoreId(3)->getSource()->getOptionText($_product->getData('tipologia'));
+	if(is_string($optionTexttipologia)){
+		$des[] = __($optionTexttipologia);
+	}
+	elseif(is_array($optionTexttipologia)){
+		$string_po = implode(" ", $optionTexttipologia);
+		$des[] = __($string_po);
+	}
+	$_product->getResource()->getAttribute('tipologia')->setStoreId($storeId)->getSource()->getOptionText($_product->getData('tipologia'));
+}
+if($_product->getData('stile') != ''){
+	$optionTextstile = $_product->getResource()->getAttribute('stile')->setStoreId(3)->getSource()->getOptionText($_product->getData('stile'));
+	if(is_string($optionTextstile)){
+		$des[] = __($optionTextstile);
+	}
+	elseif(is_array($optionTextstile)){
+		$string_sti = implode(" ", $optionTextstile);
+		$des[] = __($string_sti);
+	}
+	$_product->getResource()->getAttribute('stile')->setStoreId($storeId)->getSource()->getOptionText($_product->getData('stile'));
+}
+if(count($des) > 0){
+?>
+<div class="product attribute overview">
+	<div class="value">
+		<?php echo implode(" ", $des);?>
+	</div>
+</div>
+<?php } ?>

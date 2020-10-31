@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="superdeals" translate="label" type="text"  showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Super Deals Settings</label>
+			<tab>rokanthemes</tab>
+            <resource>Rokanthemes_Superdeals::superdeals_configuration</resource>
+            <group id="configuration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+				<field id="description" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+				<field id="set_category" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set  Category</label>
+					<comment>Allowed set Category ID</comment>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+				<field id="limit_products" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limit Products</label>
+                    <can_be_empty>0</can_be_empty>
+					<comment>Number of products was displayed on site</comment>
+                </field>
+				<!--<field id="start_date" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Date</label>
+                    <can_be_empty>0</can_be_empty>
+					<frontend_model>Rokanthemes\Superdeals\Block\StartDatePicker</frontend_model>
+                </field>-->
+				<field id="end_date" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End Date</label>
+                    <can_be_empty>0</can_be_empty>
+					<frontend_model>Rokanthemes\Superdeals\Block\EndDatePicker</frontend_model>
+                </field>
+            </group>
+	    </section>
+    </system>
+</config>

@@ -1,0 +1,118 @@
+<?php 
+	use Magento\Framework\App\Action\Action;
+	$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+	$category_load = $block->getCategory();
+	if($category_load && strtotime($block->getConfig('end_date')) >= strtotime($block->getCurrentTime())){ 
+		$image = 'new_products_content_widget_grid';
+?>
+<div class="super-deal">
+	<div class="container">
+		<div class="super-deal-content">
+			<div class="row">
+				<div class="super-deal-header">
+					<div class="supper-deal-title">
+						<h2><?php echo $block->getConfig('title');?></h2>
+						<p><?php echo $block->getConfig('description');?></p>
+					</div>
+				</div>
+				<?php 
+					$newItems =  $block->getProducts();
+				?>
+				<div class="hot-deal-slide">
+				<?php
+				foreach($newItems as $_item) {
+					$productImage = $block->getImage($_item, $image);
+				?>
+					<div class="product-item">
+						<div class="product-photo">
+							<a href="<?php /* @escapeNotVerified */ echo $_item->getProductUrl() ?>" class="product-thumb-link">
+								<?php $productImageThumb = $block->getImage($_item, 'category_page_grid-1');?>
+								<span class="image0 image-switch">
+									<?php echo $productImage->toHtml(); ?>
+								</span>
+								<span class="image1 image-switch">
+									<?php echo $productImageThumb->toHtml(); ?>
+								</span>
+							</a>
+							<?php if ( $_item->getFinalPrice() < $_item->getPrice() ): ?>
+								<span class="onsale">
+									<span class="sale-bg"></span>
+									<span class="sale-text"><?php echo __('Sale') ?></span>
+								</span>
+							<?php endif; ?>
+						</div>
+						<div class="product-info">
+							<h3 class="title-product"><a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+										   href="<?php echo $block->getProductUrl($_item) ?>"
+										   class="product-item-link">
+											<?php echo $block->escapeHtml($_item->getName()) ?>
+							</a></h3>
+							<div class="product-rating">
+								<?php if ($templateType): ?>
+									<?php echo $block->getReviewsSummaryHtml($_item, $templateType,true); ?>
+								<?php endif; ?>
+							</div>
+							<div class="info-price-deal">
+								<?php /* @escapeNotVerified */ echo $this->helper('Rokanthemes\Themeoption\Helper\Data')->getPriceDisplayCustom($block->getProductPrice($_item)) ?>
+							</div>
+							<div class="desc"><?php echo $block->softTrim($block->escapeHtml(strip_tags($_item->getShortDescription())), 100); ?></div>
+							<div class="super-deal-countdown" data-date="<?php echo $block->getConfig('end_date');?>"></div>
+						</div>
+					</div>
+				<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+require(["jquery", 'mage/mage','rokanthemes/timecircles', "rokanthemes/owl"], function($){
+	'use strict';
+		$( document ).ready(function() {
+			$(".hot-deal-slide").owlCarousel({
+	        items: 1,
+	         	itemsDesktop : [1366, 1],
+		        itemsDesktopSmall : [991, 1],
+		        itemsTablet : [767, 1],
+		        itemsMobile : [479, 1],
+				navigation : true,
+	         afterAction: function(el){
+		     this.$owlItems.removeClass('first-active')
+		     this.$owlItems .eq(this.currentItem).addClass('first-active')  
+		  }
+	    });
+
+			if($('.super-deal-countdown').length>0){
+				$(".super-deal-countdown").TimeCircles({
+					fg_width: 0.01,
+					bg_width: 1.2,
+					text_size: 0.07,
+					circle_bg_color: "#ffffff",
+					time: {
+						Days: {
+							show: true,
+							text: "Days",
+							color: "#888888"
+						},
+						Hours: {
+							show: true,
+							text: "Hours",
+							color: "#888888"
+						},
+						Minutes: {
+							show: true,
+							text: "Mins",
+							color: "#888888"
+						},
+						Seconds: {
+							show: true,
+							text: "Secs",
+							color: "#888888"
+						}
+					}
+				}); 
+			}
+		});
+    });
+</script>
+<?php } ?>

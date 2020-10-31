@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+	<default>
+        <featuredproduct>
+			<featuredproduct_config> 
+				<enabled>1</enabled>
+				<title>#Featured Products</title>
+				<subdescription>Nam liber tempor cum soluta nobis eleifend option congue nihil. Doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam.</subdescription>
+				<auto>0</auto>
+				<speed>1500</speed>
+				<show_price>1</show_price>
+				<addtocart>1</addtocart>
+				<addtowishlist>1</addtowishlist>
+				<addtocompare>0</addtocompare>
+				<review>0</review>
+				<description>0</description>
+				<maxlength></maxlength>
+				<qty>15</qty>
+				<row_show>3</row_show>
+				<itemsDefault>5</itemsDefault>
+				<itemsDesktop>4</itemsDesktop>
+				<itemsDesktopSmall>3</itemsDesktopSmall>
+				<itemsTablet>2</itemsTablet>
+				<itemsMobile>1</itemsMobile>
+				<next_back>1</next_back>
+				<nav_ctrl>0</nav_ctrl>
+			</featuredproduct_config>
+		</featuredproduct>
+	</default>
+</config>

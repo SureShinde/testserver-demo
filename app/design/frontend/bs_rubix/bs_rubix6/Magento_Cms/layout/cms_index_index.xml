@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceContainer name="page.top">
+			<container name="content.top.home" label="content top home" htmlTag="div" htmlClass="content_top_home">	
+				<block class="Magento\Framework\View\Element\Template" name="top_home" template="Magento_Cms::top-home.phtml"/>
+			</container>
+		</referenceContainer>
+		<move element="content.top.home" destination="page.top" after="-"/>
+		<referenceContainer name="page.top">
+			<container name="section_top_banner" label="content top banner" htmlTag="div" htmlClass="section_top_banner">
+				<container htmlTag="div" htmlClass="container">
+					<container htmlTag="div" htmlClass="row">
+						<container htmlTag="div" htmlClass="col-xs-12 col-sm-12 col-md-8 col-slider">
+							<container name="top_banner" htmlTag="div" htmlClass="top_banner">
+								<block class="Rokanthemes\SlideBanner\Block\Slider" name="homepageslider" as="slideshow">
+									<arguments>
+										<argument name="slider_id" xsi:type="string">homepageslider6</argument>
+									</arguments>
+								</block>
+							</container>
+						</container>
+						<container htmlTag="div" htmlClass="col-xs-12 col-sm-12 col-md-4 col-banner-static">
+							<block class="Magento\Cms\Block\Block" name="banner-top-right">
+							    <arguments>
+							        <argument name="block_id" xsi:type="string">banner_top_static</argument>
+							    </arguments>
+							</block>
+						</container>
+					</container>
+				</container>
+			</container>
+		</referenceContainer>
+    </body>
+</page>

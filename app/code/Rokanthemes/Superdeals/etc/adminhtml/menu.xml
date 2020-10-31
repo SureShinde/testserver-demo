@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+    	<add id="Rokanthemes_Superdeals::superdeals_configuration" title="Super Deals Settings" module="Rokanthemes_Superdeals" sortOrder="10" parent="Rokanthemes_RokanBase::rokanbase_setting" action="adminhtml/system_config/edit/section/superdeals" resource="Rokanthemes_Superdeals::superdeals_configuration" />
+    </menu>
+</config>

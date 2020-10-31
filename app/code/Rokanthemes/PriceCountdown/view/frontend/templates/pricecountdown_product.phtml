@@ -1,0 +1,37 @@
+<?php
+$product = $block->getProduct();
+$toDate = $product->getSpecialTODate();
+$fromDate = $product->getSpecialFromDate();
+$_current_timer = time();
+if($toDate && (strtotime($toDate) >= strtotime($_current_timer))){
+	$count = 100;
+	$stockItem = $product->getExtensionAttributes()->getStockItem();
+	$stocks = ($stockItem->getQty() > 0) ? $stockItem->getQty() : 100;
+?>
+<div class="countdown-page-product-custom">
+	<div class="des-countdown-p-p-c"><?php echo str_replace('%s', $stocks, $this->helper('Rokanthemes\PriceCountdown\Helper\Data')->getConfigData('pricecountdown/product_page/messages_p_v'));?></div>
+	<div class="progressbar-countdown-p-p-c"><div style="width: 100%;"></div></div>
+	<div id="countbox-p-p-c-container"></div>
+</div>
+<script type="text/javascript">
+	var DisplayFormat = '<span class="countdown-p-p-c-section"> <span class="countdown-amount-p-p-c">%%D%%</span> <span class="countdown-label-p-p-c"><?php echo __('Days') ?></span> </span> <span class="countdown-p-p-c-section"> <span class="countdown-amount-p-p-c">%%H%% </span> <span class="countdown-label-p-p-c"><?php echo __('Hours') ?></span> </span> <span class="countdown-p-p-c-section"> <span class="countdown-amount-p-p-c">%%M%%</span> <span class="countdown-label-p-p-c"><?php echo __('Minutes') ?></span> </span> <span class="countdown-p-p-c-section"> <span class="countdown-amount-p-p-c">%%S%%</span> <span class="countdown-label-p-p-c"><?php echo __('Seconds') ?></span> </span>';
+	
+	var dthen<?php echo $count; ?> = new Date("<?php echo Date("m/d/y h:i:s A", strtotime($toDate)); ?>");
+	start = "<?php echo Date("m/d/y h:i:s A", $_current_timer); ?>";
+	start_date = Date.parse(start);
+	var dnow<?php echo $count; ?> = new Date(start_date);
+	if(CountStepper>0)
+		ddiff= new Date((dnow<?php echo $count; ?>)-(dthen<?php echo $count; ?>));
+	else
+		ddiff = new Date((dthen<?php echo $count; ?>)-(dnow<?php echo $count; ?>));
+	//gsecs<?php echo $count; ?> = Math.floor(ddiff.valueOf()/1000);
+	<?php if(strtotime($fromDate) <= $_current_timer){ ?>
+		gsecs<?php echo $count; ?> = Math.floor(ddiff.valueOf()/1000);
+	<?php }else{ ?>
+		gsecs<?php echo $count; ?> = -1;
+	<?php } ?>
+
+	var iid<?php echo $count; ?> = "countbox-p-p-c-container";
+	CountBack(gsecs<?php echo $count; ?>,iid<?php echo $count; ?>, 1);
+</script>
+<?php } ?>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+ * NOTICE OF LICENSE
+ * You may not sell, distribute, sub-license, rent, lease or lend complete or portion of software to anyone.
+ *
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package   RLTSquare_BestSeller
+ * @copyright Copyright (c) 2017 RLTSquare (https://www.rltsquare.com)
+ * @contacts  support@rltsquare.com
+ * @license  See the LICENSE.md file in module root directory
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="BSP" translate="label" sortOrder="400">
+            <label>Best Seller</label>
+        </tab>
+        <section id="bestSeller" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Settings</label>
+            <tab>BSP</tab>
+            <resource>RLTSquare_BestSeller::rltsquare_bestseller</resource>
+            <group id="bestSellerGroup" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Best Seller</label>
+                <field id="isEnableDisable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="stock" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Out of Stock</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="isEnableDisable">1</field>
+                    </depends>
+                </field>
+                <field id="display_limit" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products Display</label>
+                    <source_model>RLTSquare\BestSeller\Model\Config\Source\DisplayLimit</source_model>
+                    <depends>
+                        <field id="isEnableDisable">1</field>
+                    </depends>
+                </field>
+                <field id="visibility" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Visibility</label>
+                    <source_model>RLTSquare\BestSeller\Model\Config\Source\Visibility</source_model>
+                    <depends>
+                        <field id="isEnableDisable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

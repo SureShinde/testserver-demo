@@ -1,0 +1,94 @@
+/* Less Variables */
+
+/* Font */
+@bdf:  'Red Hat Display', sans-serif;
+@headingfont :  'Red Hat Display', sans-serif;
+@pricefont : 'Red Hat Display', sans-serif;
+@fontOswald: 'Oswald', sans-serif;
+@fontIcon: 'simple-line-icons';
+
+/*Color */
+@maincolor: #ba933e;
+@bkg: #fff;
+@iconDropdown: #b5b5b5;
+@textcolor: #666666;
+@primarycolor: #ba933e;
+@headingcolor: #1a1a1a;
+@headericoncolor: #222222;
+@menucolor: #1a1a1a;
+@iconcolor: #222222;
+@whitecolor: #fff;
+@blackcolor: #000;
+@bordercolor :#e1e1e1;
+@bordercolorFooter :#313131;
+@detailproductbg: #f5f5f5;
+@footercolorheading: #fff;
+@footer-color: #999999;
+@inputtext: #999999;
+@copyrightcolor: #666666;
+@colorborderinput: #ebebeb;
+@colorborderProducts: rgba(0,0,0,.1);
+@colorRating: #ba933e;
+@grayColor: #eee;
+@grayColorBold: #1a1a1a;
+@grayColorThin: #dddddd;
+
+/*Background */
+@bgHeaderTop: #1a1a1a;
+@bkgheader: #fff;
+@bkgtopCategory: #f7f7f7;
+@bkgfooter: #1a1a1a;
+@bgmenu: #343333;
+@bggrey: #f2f2f2;
+@bgwhite: #fff;
+@bgblack: #fff;
+@copyrightbg: #1e1e1e;
+@footernewsletterbg: #fff;
+@bgdark: #222222;
+@bgNav: #d3d3d3;
+@bgbutton: #1a1a1a;
+@bgServices: #f8f8f8;
+@bgBreadcrumb: #e5e5e5;
+/*Font-weight*/
+@menufont-weight: 400;
+@headingfontweight: 700;
+@regularfontweight: 400;
+
+/*Footer */
+@pricecolor: #666;
+@links: #1a1a1a;
+@linkshover: #ba933e;
+@salebg: #cc1414;
+@greycolor: #999;
+@lightcolor: #fff;
+@darkcolor: #1a1a1a;
+@darkengreycolor: #707070;
+@sorterbg: #f5f5f5;
+
+.transition (@transition) {
+    -webkit-transition: @transition;  
+    -moz-transition:    @transition;
+    -ms-transition:     @transition; 
+    -o-transition:      @transition;  
+}
+.btn-shop(){
+    background: @bgbutton;
+    min-height: 50px;
+    line-height: 48px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0 30px;
+    border-radius: 4px;
+    &:hover {
+        background: @primarycolor;
+    }
+    &::after {
+        content: "\e606";
+        font-family: @fontIcon;
+        font-weight: 100;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+}

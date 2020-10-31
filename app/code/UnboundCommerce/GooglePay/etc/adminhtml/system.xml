@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="googlepay" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Pay</label>
+                <comment><![CDATA[The Google Pay API enables fast, simple checkout on your website.<br/>With Google Pay, your customers can checkout quickly using the payment information stored in their Google Accounts.<br/>]]></comment>
+                <fieldset_css>complex googlepay-section</fieldset_css>
+                <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                <attribute type="displayIn">recommended_solutions</attribute>
+                <group id="googlepay_credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Pay Credentials</label>
+                    <field id="merchant_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Google Merchant Id</label>
+                        <config_path>payment/googlepay/merchant_id</config_path>
+                        <tooltip><![CDATA[To obtain your Google Merchant ID, navigate to your Google Pay Developer Profile and find it under the Merchant ID section.]]></tooltip>
+                    </field>
+                    <field id="merchant_name" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant Name</label>
+                        <config_path>payment/googlepay/merchant_name</config_path>
+                        <comment><![CDATA[Please check <a href="https://developers.google.com/pay/api/web/guides/setup">Google's documentation</a> for more information on Google Pay Setup.]]></comment>
+                    </field>
+                </group>
+                <group id="gateway_credentials" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Gateway Credentials</label>
+                    <field id="gateway_id" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Gateway</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\GatewayName</source_model>
+                        <config_path>payment/googlepay/gateway_id</config_path>
+                    </field>
+                    <field id="environment" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Environment</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\Environment</source_model>
+                        <config_path>payment/googlepay/environment</config_path>
+                    </field>
+                    <include path="UnboundCommerce_GooglePay::system/adyen.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/bluesnap.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/braintree.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/firstdata.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/moneris.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/stripe.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/vantiv.xml"/>
+                    <include path="UnboundCommerce_GooglePay::system/worldpay.xml"/>
+                </group>
+                <group id="googlepay_options" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Pay Settings</label>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Google Pay</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/googlepay/active</config_path>
+                    </field>
+                    <field id="payment_action" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Payment Action</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\PaymentAction</source_model>
+                        <config_path>payment/googlepay/payment_action</config_path>
+                    </field>
+                    <field id="cc_types" translate="label" type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allowed Card Networks</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\Cctype</source_model>
+                        <config_path>payment/googlepay/cc_types</config_path>
+                    </field>
+                    <field id="debug" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable Logging at Debug Level</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/googlepay/debug</config_path>
+                    </field>
+                </group>
+                <group id="googlepay_frontend" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Pay Advanced Settings</label>
+                    <field id="button_color" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Button Color</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\ButtonColor</source_model>
+                        <config_path>payment/googlepay/button_color</config_path>
+                        <comment><![CDATA[<b>Default:</b> A Google-selected default value. Currently <b>black</b> but it may change over time]]></comment>
+                    </field>
+                    <field id="button_type" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Button Type</label>
+                        <source_model>UnboundCommerce\GooglePay\Model\Adminhtml\Source\ButtonType</source_model>
+                        <config_path>payment/googlepay/button_type</config_path>
+                        <comment><![CDATA[<b>Long:</b> "Buy with Google Pay" button, <br><b>Short:</b> Google Pay payment button without the "Buy with" text. ]]></comment>
+                    </field>
+                    <field id="show_in_mini_cart" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show Google Pay Button in Minicart</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/googlepay/show_in_mini_cart</config_path>
+                    </field>
+                    <field id="show_agreements_in_addons" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show Checkout Agreements in Minicart Addons</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/googlepay/show_agreements_in_addons</config_path>
+                    </field>
+                    <field id="show_coupon_in_addons" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Show Coupon Block in Minicart Addons</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/googlepay/show_coupon_in_addons</config_path>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

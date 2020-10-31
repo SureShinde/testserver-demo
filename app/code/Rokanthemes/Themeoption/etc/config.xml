@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+	<default>
+		<themeoption>
+			<newsletter>
+				<enable>1</enable>
+				<width>600</width>
+				<height>330</height>
+				<bg_color>F4F4F4</bg_color>
+			</newsletter>
+			<fake_order>
+				<enable_f_o>1</enable_f_o>
+				<seconds_displayed>5</seconds_displayed>
+				<messages>Someone purcharse a</messages>
+			</fake_order>
+		</themeoption>
+	</default>
+</config>

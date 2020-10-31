@@ -1,0 +1,38 @@
+{
+    "name": "unboundcommerce/module-googlepay",
+    "description": "Magento2 GooglePay Plugin to connect with Payments Service Providers",
+    "require": {
+        "php": "~7.1.3||~7.2.0||~7.3.0",
+        "magento/framework": "^102",
+        "magento/module-catalog": "^103",
+        "magento/module-checkout": "^100.3",
+        "magento/module-config": "^101.1",
+        "magento/module-customer": "^102",
+        "magento/module-directory": "^100.3",
+        "magento/module-eav": "^102",
+        "magento/module-payment": "^100.3",
+        "magento/module-quote": "^101.1",
+        "magento/module-sales": "^102",
+        "magento/module-store": "^101",
+        "magento/module-tax": "^100.3",
+        "ext-json": "*",
+        "ext-curl":"*",
+        "ext-dom": "*",
+        "ext-openssl": "*",
+        "braintree/braintree_php": "^3.35",
+        "php-extended/php-root-cacert-bundle": "^1",
+        "vantiv/cnp-payments-sdk": "^12.7.2"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "UnboundCommerce\\GooglePay\\": ""
+        }
+    }
+}

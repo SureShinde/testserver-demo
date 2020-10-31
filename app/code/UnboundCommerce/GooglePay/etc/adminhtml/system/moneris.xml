@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="moneris_gateway_store_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Moneris Store Id</label>
+        <config_path>payment/googlepay_moneris/gateway_store_id</config_path>
+        <tooltip><![CDATA[Please enter the Store Id which you will find in your Moneris Developer Portal under <b>My Profile > Full Profile > My Testing Credentials</b> for sandbox environment.]]></tooltip>
+        <depends>
+            <field id="gateway_id">moneris</field>
+        </depends>
+    </field>
+    <field id="moneris_api_token" translate="label" type="obscure" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Api Token</label>
+        <config_path>payment/googlepay_moneris/api_token</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[Please enter the Api Token which you will find in your Moneris Developer Portal under <b>My Profile > Full Profile > My Testing Credentials</b> for sandbox environment.]]></tooltip>
+        <comment><![CDATA[Please check <a href="https://developer.moneris.com/Documentation/NA/E-Commerce%20Solutions/Google%20Pay/On%20The%20Web">Moneris' documentation</a> for more information on how to get a Test Store ID and API Token.]]></comment>
+        <depends>
+            <field id="gateway_id">moneris</field>
+        </depends>
+    </field>
+    <field id="moneris_web_merchant_key" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Web Merchant Key</label>
+        <config_path>payment/googlepay_moneris/web_merchant_key</config_path>
+        <tooltip><![CDATA[Please enter the Google Pay Web Merchant Key which you will find in your Moneris Merchant Resource Center under <b>Admin > Google Pay</b>.]]></tooltip>
+        <comment><![CDATA[Use the Web Merchant Key that corresponds to whichever stage of development you are in (<a href="https://esqa.moneris.com/mpg">testing</a> vs. <a href="https://www3.moneris.com/mpg">production</a>).]]></comment>
+        <depends>
+            <field id="gateway_id">moneris</field>
+        </depends>
+    </field>
+    <field id="moneris_dynamic_descriptor" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Dynamic Descriptor</label>
+        <config_path>payment/googlepay_moneris/dynamic_descriptor</config_path>
+        <tooltip><![CDATA[Merchant defined description that will appear on the card statement. Dependent on the card issuer, the statement will typically show the dynamic desciptor appended to the merchant's existing business name separated by the "/" character.]]></tooltip>
+        <comment><![CDATA[Please note that the combined length of the merchant's business name, forward slash "/" character, and the dynamic descriptor may not exceed 22 characters.
+                <br>Example:<br><b>Existing Business Name:</b>  ABC Painting
+                            <br><b>Dynamic Descriptor:</b>  Booking 12345
+                            <br><b>Cardholder Statement Displays:</b>  ABC Painting/Booking 1]]></comment>
+        <depends>
+            <field id="gateway_id">moneris</field>
+        </depends>
+    </field>
+</include>

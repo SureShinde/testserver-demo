@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <block class="Magento\CheckoutAgreements\Block\Agreements" name="googlepay.checkout.payment.details.agreements" as="paymentAgreements" template="Magento_CheckoutAgreements::additional_agreements.phtml"/>
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="googlepay-button" xsi:type="array">
+                                                            <item name="component" xsi:type="string">UnboundCommerce_GooglePay/js/view/googlepay-shipping</item>
+                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                            <item name="displayArea" xsi:type="string">customer-email</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-googlepay-button" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">before-googlepay-button</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- before googlepay button -->
+                                                                    </item>
+                                                                </item>
+                                                                <item name="after-googlepay-button" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">after-googlepay-button</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- after googlepay button -->
+                                                                        <item name="agreements" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">Magento_CheckoutAgreements/js/view/checkout-agreements</item>
+                                                                            <item name="sortOrder" xsi:type="string">100</item>
+                                                                            <item name="displayArea" xsi:type="string">after-googlepay-button</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="renders" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="googlepay" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">UnboundCommerce_GooglePay/js/view/payment/googlepay</item>
+                                                                    <item name="methods" xsi:type="array">
+                                                                        <item name="googlepay" xsi:type="array">
+                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="before-googlepay" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                                            <item name="displayArea" xsi:type="string">before-googlepay</item>
+                                                                            <item name="children" xsi:type="array">
+                                                                                <!-- before googlepay -->
+                                                                            </item>
+                                                                        </item>
+                                                                        <item name="after-googlepay" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                                            <item name="displayArea" xsi:type="string">after-googlepay</item>
+                                                                            <item name="children" xsi:type="array">
+                                                                                <!-- after googlepay -->
+                                                                            </item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); 
+$config_point1 = $this->helper('Rokanthemes\RokanBase\Helper\Data')->getConfigData('setting_categories/categories/point1');
+$arr_config_point1 = explode(',', $config_point1);
+$show = false;
+$categories = $_product->getCategoryIds();
+if(count($categories) > 0 && count($arr_config_point1) > 0){
+	foreach($arr_config_point1 as $val){
+		if(in_array(trim($val), $categories)){
+			$show = true;
+			break;
+		}
+	}
+}
+?>
+<?php if($show){?>
+<div class="text-description">
+	<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_view_description_price')->toHtml();?>
+</div>
+<?php } ?>
+<div class="product-add-form">
+    <form action="<?php /* @escapeNotVerified */ echo $block->getSubmitUrl($_product) ?>" method="post"
+          id="product_addtocart_form_quickview"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <?php echo $block->getBlockHtml('formkey')?>
+        <?php echo $block->getChildHtml('form_top'); ?>
+        <?php if (!$block->hasOptions()):?>
+            <?php echo $block->getChildHtml('product_info_form_content'); ?>
+        <?php else:?>
+            <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1'):?>
+                <?php echo $block->getChildChildHtml('options_container') ?>
+            <?php endif;?>
+        <?php endif; ?>
+
+        <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2'):?>
+            <?php echo $block->getChildChildHtml('options_container') ?>
+        <?php endif;?>
+        <?php echo $block->getChildHtml('form_bottom'); ?>
+    </form>
+</div>
+<script>
+    require([
+        'jquery',
+        'priceBox'
+    ], function($){
+		if($('.amasty-hide-price-text').length > 0){
+			$('div.short-action').hide();
+			$('div.text-description').hide();
+		}
+        var dataPriceBoxSelector = '[data-role=priceBox]',
+            dataProductIdSelector = '[data-product-id=<?php echo $block->escapeHtml($_product->getId())?>]',
+            priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+
+        priceBoxes = priceBoxes.filter(function(index, elem){
+            return !$(elem).find('.price-from').length;
+        });
+
+        priceBoxes.priceBox({'priceConfig': <?php /* @escapeNotVerified */ echo $block->getJsonConfig() ?>});
+    });
+</script>
+<div class="short-action">
+	<div class="short-content">
+		<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_view_future_function')->toHtml();?>
+	</div>
+</div>

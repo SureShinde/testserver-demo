@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="cybersource_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Cybersource Merchant Id</label>
+        <config_path>payment/googlepay_cybersource/gateway_merchant_id</config_path>
+        <depends>
+            <field id="gateway_id">cybersource</field>
+        </depends>
+    </field>
+    <field id="cybersource_api_key" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Api Key</label>
+        <config_path>payment/googlepay_cybersource/api_key</config_path>
+        <tooltip><![CDATA[Please enter the identifier for the secret key that you created in the CyberSource Business Center.]]></tooltip>
+        <depends>
+            <field id="gateway_id">cybersource</field>
+        </depends>
+    </field>
+    <field id="cybersource_secret_key" translate="label" type="obscure" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Shared Secret Key</label>
+        <config_path>payment/googlepay_cybersource/secret_key</config_path>
+        <tooltip><![CDATA[Please enter the shared secret key that you created in the CyberSource Business Center.]]></tooltip>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <comment><![CDATA[Please check <a href="https://developer.cybersource.com/api/developer-guides/dita-payments/authentication/createSharedKey.html">Cybersource's documentation</a> for more information on how to create a Shared Secret Key.]]></comment>
+        <depends>
+            <field id="gateway_id">cybersource</field>
+        </depends>
+    </field>
+</include>

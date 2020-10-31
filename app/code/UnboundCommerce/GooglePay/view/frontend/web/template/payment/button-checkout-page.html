@@ -1,0 +1,36 @@
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <!-- GooglePay Logo -->
+            <img data-bind="attr: {src: getGooglePayMark(), alt: $t('')}"
+                 class="payment-icon"/>
+            <!-- GooglePay Logo -->
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div data-bind='mageInit: getWidgetConfig("googlePayCheckoutContainer")' class="google-pay-checkout-page-button">
+            <div class="checkout-agreements-block">
+                <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+            <div id="googlePayCheckoutContainer" class="google-pay-container">
+            </div>
+        </div>
+    </div>
+</div>

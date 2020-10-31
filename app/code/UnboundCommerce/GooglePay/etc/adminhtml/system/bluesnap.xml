@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="bluesnap_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>BlueSnap Merchant Id</label>
+        <config_path>payment/googlepay_bluesnap/gateway_merchant_id</config_path>
+        <tooltip><![CDATA[Your Merchant Id is different for BlueSnap Sandbox and Production. Be sure to use the correct merchant ID to avoid processing errors.]]></tooltip>
+        <depends>
+            <field id="gateway_id">bluesnap</field>
+        </depends>
+    </field>
+    <field id="bluesnap_username" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Username</label>
+        <config_path>payment/googlepay_bluesnap/username</config_path>
+        <tooltip><![CDATA[Please enter the username which you have added under the <b>API Settings - API Credentials</b> section while configuring Bluesnap API.]]></tooltip>
+        <depends>
+            <field id="gateway_id">bluesnap</field>
+        </depends>
+    </field>
+    <field id="bluesnap_password" translate="label" type="obscure" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Password</label>
+        <config_path>payment/googlepay_bluesnap/password</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[Please enter the password which you have added under the <b>API Settings - API Credentials</b> section while configuring Bluesnap API.]]></tooltip>
+        <depends>
+            <field id="gateway_id">bluesnap</field>
+        </depends>
+        <comment><![CDATA[Please check <a href="https://developers.bluesnap.com/docs/api-credentials">Bluesnap's documentation</a> for more information on how to configure API Credentials.]]></comment>
+    </field>
+</include>

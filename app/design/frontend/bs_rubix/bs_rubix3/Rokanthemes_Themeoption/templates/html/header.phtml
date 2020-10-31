@@ -1,0 +1,66 @@
+<div class="header-container">
+	<div class="header">
+		<div class="container-full">
+			<div class="for-full-withmenu">
+				<div class="col-logo"><?php echo $this->getChildHtml("logo"); ?></div>
+				<?php echo $this->getChildHtml("top.navigation.sections"); ?>
+				<div class="actions-header">
+					<?php echo $this->getChildHtml("topSearch"); ?>	
+					<div class="wishlist hidden-sm hidden-xs">
+						<a href="<?php echo $this->getUrl('wishlist');?>"><i class="icon-heart icons"></i></a>
+					</div>		
+					<?php echo $this->getChildHtml("minicart");?>
+					<div class="header-top-setting">
+						<a href="#" class="actions-top"><i class="icon-options icons"> </i></a>
+						<div class="setting-container">
+							<div class="container-setting-language-currency">
+								<button type="button" id="btn-h-t-s-close" title="<?php echo __('Close') ?>">
+									<span><?php echo __('Close') ?></span>
+								</button>
+								<div class="register-login hidden-xs">
+									<h3><?php echo __('User');?></h3>
+									<ul>
+									<?php if(!$this->helper('Rokanthemes\Themeoption\Helper\Data')->isLoggedIn()){?>
+										<li><a href="<?php echo $this->getUrl('customer/account/login');?>"><?php echo __('Login');?></a></li>
+										<li><a href="<?php echo $this->getUrl('customer/account/create');?>"><?php echo __('Registry');?></a></li>
+									<?php
+									}
+									else{
+									?>
+										<li><a href="<?php echo $this->getUrl('customer/account/index');?>"><?php echo __('My account');?></a></li>
+										<li><a href="<?php echo $this->getUrl('customer/account/logout');?>"> / <?php echo __('Logout');?></a></li>
+									<?php } ?>
+									</ul>
+								</div>
+								<h3><?php echo __('Language') ?></h3>
+								<?php echo $this->getChildHtml("store_language"); ?>
+								<h3><?php echo __('Currency') ?></h3>
+								<?php echo $this->getChildHtml("currency"); ?>
+							</div>
+						</div>
+					</div>		
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<?php if($this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->isEnableStickyHeader()){ ?>
+<script type="text/javascript">
+    require(['jquery'],function($){
+        $(document).ready(function($){
+			$(window).scroll(function() {
+				var num = $('.header-container').outerHeight();
+				var screenWidth = $(window).width();
+				
+				if ($(this).scrollTop() > num && screenWidth >= 768 ){  
+					$(".header").addClass("sticky");
+				}
+				else{
+					$(".header").removeClass("sticky");
+				}
+			});
+		});
+    });
+</script>
+<?php } ?>

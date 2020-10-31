@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+	<default>
+        <onsaleproduct>
+			<onsaleproduct_config>
+				<enabled>1</enabled>
+				<title>#Onsale Products</title>
+				<auto>0</auto>
+				<description>Nam liber tempor cum soluta nobis eleifend option congue nihil. Doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam.</description>
+				<show_price>1</show_price>
+				<addtocart>1</addtocart>
+				<addtowishlist>1</addtowishlist>
+				<addtocompare>0</addtocompare>
+				<review>0</review>
+				<qty>8</qty>
+				<items_show>1</items_show>
+				<itemsDefault>4</itemsDefault>
+				<itemsDesktop>4</itemsDesktop>
+				<itemsDesktopSmall>3</itemsDesktopSmall>
+				<itemsTablet>2</itemsTablet>
+				<itemsMobile>1</itemsMobile>
+				<next_back>1</next_back>
+				<nav_ctrl>0</nav_ctrl>
+			</onsaleproduct_config>
+		</onsaleproduct>
+	</default>
+</config>

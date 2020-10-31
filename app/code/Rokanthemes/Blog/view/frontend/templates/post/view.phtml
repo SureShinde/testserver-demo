@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2015 RokanThemes.com. All rights reserved.
+
+ * @author RokanThemes Team <contact@rokanthemes.com>
+ */
+?>
+<?php
+/**
+ * Blog post view template
+ *
+ * @var $block \Rokanthemes\Blog\Block\Post\View
+ */
+?>
+<?php
+    $_post = $this->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postNameStripped = $block->stripTags($_post->getTitle(), null, true);
+?>
+<div class="post-view">
+    <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
+		<div class="post-images">
+			<a href="<?php echo $_post->getPostUrl() ?>">
+				<img src="<?php echo $this->getMediaFolder().$_post->getDetailimage() ?>"/>
+			</a> 
+			<?php echo $this->getInfoHtml() ?>
+		</div> 
+		
+        <div class="post-content">
+            <div class="post-description">
+                <?php echo $block->getContent() ?>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="post-bottom">
+            <?php echo $this->getChildHtml('blog.post.bottom') ?>
+        </div>
+    </div>
+</div>

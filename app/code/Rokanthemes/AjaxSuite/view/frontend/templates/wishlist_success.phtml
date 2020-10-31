@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+$_product = $block->getProduct();
+?>
+<div class="product-name">
+    <div class="product-name">
+        <?php
+        $success = __(
+			'<strong>%1</strong> <p class="greycolor">has been added to your wishlist.</p>', 
+            $_product->getName()
+        );
+        echo $success ?></div>
+</div>
+<div class="ajaxsuite-buttons">
+    <button type="button" id="ajaxwishlist" class="action primary" onclick="window.location = '<?= $block->getUrl('wishlist')?>'"><span><?= __('View Wish List') ?></span></button>
+</div>
+

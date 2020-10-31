@@ -1,0 +1,29 @@
+<div id="back-top" class=""><i class="icon-arrow-up icons"></i></div>
+<div class="footer-container">
+	<div class="footer-static-container">
+		<div class="container">
+			<div class="footer-static">
+				<?php echo $this->getChildHtml("footer_static"); ?>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12"> 
+					<div class="copyright">
+						<?php  echo $this->getLayout()->createBlock("Rokanthemes\Themeoption\Block\Customcss")->setTemplate("html/copyright.phtml")->toHtml() ?>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12 text-right"> 
+					<?php echo $this->getChildHtml("footer_payment"); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	window.onload = function () {
+		document.body.className += " preloaded";
+	}
+</script>

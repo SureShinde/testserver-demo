@@ -1,0 +1,70 @@
+<div class="header-container">
+	<div class="header-top text-center">
+		<div class="container-full">
+			<div class="row">
+				<div class="col-lg-4 hidden-md hidden-xs hidden-sm col-top-left">
+					<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_contact')->toHtml();?>
+				</div>
+				<div class="col-lg-4 col-md-12 col-top-center text-center">
+					<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_text')->toHtml();?>				
+				</div>
+				<div class="col-lg-4 hidden-md hidden-xs hidden-sm col-top-right">
+					<?php echo $this->getChildHtml("store_language"); ?>
+					<?php echo $this->getChildHtml("currency"); ?>
+					<div class="social-link">
+						<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('social_block')->toHtml();?>
+					</div>
+				</div>
+			</div>
+				
+		</div>
+	</div>
+	<div class="header">
+		<div class="container-full">
+			<div class="for-full-withmenu">
+				<div class="col-logo"><?php echo $this->getChildHtml("logo"); ?></div>
+				<?php echo $this->getChildHtml("top.navigation.sections"); ?>
+				<div class="actions-header">			
+					<div class="register-login hidden-xs">
+						<?php if(!$this->helper('Rokanthemes\Themeoption\Helper\Data')->isLoggedIn()){?>
+							<a href="<?php echo $this->getUrl('customer/account/login');?>"><i class="icon-user icons"></i><?php echo __('Login');?></a>
+							<a href="<?php echo $this->getUrl('customer/account/create');?>"> / <?php echo __('Registry');?></a>
+						<?php
+						}
+						else{
+						?>
+						<a href="<?php echo $this->getUrl('customer/account/index');?>"><i class="icon-user icons"></i><?php echo __('My account');?></a>
+						<a href="<?php echo $this->getUrl('customer/account/logout');?>"> / <?php echo __('Logout');?></a>
+						<?php } ?>
+					</div>
+					<span class="sperator hidden-sm hidden-xs">|</span>
+					<?php echo $this->getChildHtml("topSearch"); ?>	
+					<div class="wishlist hidden-sm hidden-xs">
+						<a href="<?php echo $this->getUrl('wishlist');?>"><i class="icon-heart icons"></i></a>
+					</div>		
+					<?php echo $this->getChildHtml("minicart");?>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<?php if($this->helper('Rokanthemes\Themeoption\Helper\Themeconfig')->isEnableStickyHeader()){ ?>
+<script type="text/javascript">
+    require(['jquery'],function($){
+        $(document).ready(function($){
+			$(window).scroll(function() {
+				var num = $('.header-container').outerHeight();
+				var screenWidth = $(window).width();
+				
+				if ($(this).scrollTop() > num && screenWidth >= 768 ){  
+					$(".header").addClass("sticky");
+				}
+				else{
+					$(".header").removeClass("sticky");
+				}
+			});
+		});
+    });
+</script>
+<?php } ?>

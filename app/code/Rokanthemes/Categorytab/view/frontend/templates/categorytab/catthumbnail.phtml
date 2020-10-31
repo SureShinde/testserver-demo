@@ -1,0 +1,39 @@
+<?php 
+	$enable = $block->getConfig('enabled');
+	if($enable < 1) return ; 
+	$title = $block->getTitle();
+	$categoryIds = $block->getCategoryIds();
+	$categoryIds = explode(',', $categoryIds);
+	$description= $block->getDescription(); 
+?>
+<div class="categories-thumbnails">
+	<header class='group-title1'>
+			<?php 	echo '<h2>'.$title.'</h2>'; ?>
+			<?php 	echo '<p class="description">'.$description.'</p>'; ?>
+	</header>
+	<div class="row">
+		<?php 
+			if(count($categoryIds) > 0) {
+				foreach($categoryIds as $key => $cate_id) {
+		?>
+		<div class="col-md-4 col-sm-4 col-xs-6 col-thumb">
+			<div class="popcat-box">
+				<?php 
+					$cate_model =  $block->getCategory($cate_id);
+					echo '
+						<a href="'.$cate_model->getUrl().'"><img src="'.$this->helper('Rokanthemes\Categorytab\Helper\Data')->getThumbnailImageUrl($cate_model).'" alt="'.$cate_model->getName().'" /></a>
+						<div class="cat-name">
+						<h3><a href="'.$cate_model->getUrl().'">'.$cate_model->getName().'</a></h3>
+						<p class="qty">'.$cate_model->getProductCount(). ' products'.'</p> 
+						</div>
+					';
+					
+			   ?>
+			</div>
+		</div>
+		<?php 
+				}
+			}
+		?>
+	</div>
+</div>

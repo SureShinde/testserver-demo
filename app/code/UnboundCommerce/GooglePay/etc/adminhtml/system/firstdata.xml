@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="firstdata_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>First Data Merchant Id</label>
+        <config_path>payment/googlepay_firstdata/gateway_merchant_id</config_path>
+        <tooltip><![CDATA[You will be able to see your First Data Merchant Ids, in your First Data developer portal, under the <b>Merchants > Sandbox/Live > Merchant Id</b> section.]]></tooltip>
+        <depends>
+            <field id="gateway_id">firstdata</field>
+        </depends>
+    </field>
+    <field id="firstdata_token" translate="label" type="obscure" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Merchant Token</label>
+        <config_path>payment/googlepay_firstdata/token</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[You will be able to see your First Data Merchant Tokens, in your First Data developer portal, under the <b>Merchants > Sandbox/Live > Token</b> section.]]></tooltip>
+        <depends>
+            <field id="gateway_id">firstdata</field>
+        </depends>
+    </field>
+    <field id="firstdata_api_key" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Api Key</label>
+        <config_path>payment/googlepay_firstdata/api_key</config_path>
+        <tooltip><![CDATA[The API Key is created by you and is available in the <b>First Data developer portal > APIs > Your API Name > Keys > API Key</b> section.]]></tooltip>
+        <depends>
+            <field id="gateway_id">firstdata</field>
+        </depends>
+    </field>
+    <field id="firstdata_api_secret" translate="label" type="obscure" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Api Secret</label>
+        <config_path>payment/googlepay_firstdata/api_secret</config_path>
+        <tooltip><![CDATA[The API Secret is created by you and is available in the <b>First Data developer portal > APIs > Your API Name > Keys > API Secret</b> section.]]></tooltip>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <comment><![CDATA[Please check <a href="https://github.com/payeezy/get_started_with_payeezy/blob/master/get_started_with_payeezy042015.pdf">First Data's documentation</a> for more information on how to create an API.]]></comment>
+        <depends>
+            <field id="gateway_id">firstdata</field>
+        </depends>
+    </field>
+</include>

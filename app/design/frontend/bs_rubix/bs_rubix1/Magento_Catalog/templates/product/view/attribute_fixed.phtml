@@ -1,0 +1,83 @@
+<?php
+$_product = $block->getProduct();
+?>
+<div class="product-info-stock-sku">
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Sku');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getSku();?>
+		</div>
+	</div>
+	<?php if($_product->getData('larghezza_barra') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Larghezza Barra (mm)');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getData('larghezza_barra');?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('color') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Colore');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getAttributeText('color');?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('essenza_legno') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Essenza legno');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getData('essenza_legno');?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('tipologia') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Tipologia');?>:</strong>    
+		<div class="value">
+			<?php 
+				$value_tipologia = $_product->getAttributeText('tipologia');
+				if(is_string($value_tipologia)){
+					echo $value_tipologia;
+				}
+				elseif(is_array($value_tipologia)){
+					echo implode(" - ", $value_tipologia);
+				}
+			?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('finitura') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Finitura');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getAttributeText('finitura');?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('dettagli_finitura') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Dettagli finitura');?>:</strong>    
+		<div class="value">
+			<?php echo $_product->getData('dettagli_finitura');?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($_product->getData('stile') != ''){ ?>
+	<div class="product attribute">
+		<strong class="type"><?php echo __('Stile');?>:</strong>    
+		<div class="value">
+			<?php
+				$value_stile = $_product->getAttributeText('stile');
+				if(is_string($value_stile)){
+					echo $value_stile;
+				}
+				elseif(is_array($value_stile)){
+					echo implode(" - ", $value_stile);
+				}
+			?>
+		</div>
+	</div>
+	<?php } ?>
+</div>

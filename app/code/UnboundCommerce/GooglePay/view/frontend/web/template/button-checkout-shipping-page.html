@@ -1,0 +1,30 @@
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<!-- ko foreach: getRegion('before-googlepay-button') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+<!-- ko foreach: $parent.getRegion('before-place-order') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+<div class="googlepay-button-container" data-bind="visible: true">
+    <div class="googlepay-button-container__cell">
+        <div data-bind='mageInit: getWidgetConfig("googlePayShippingContainer")' class="google-pay-checkout-page-button">
+            <div id="googlePayShippingContainer" class="google-pay-container">
+            </div>
+        </div>
+        <form id="shipping-gpay-agreements" class="form payments" novalidate="novalidate">
+            <div class="shipping-gpay-agreements">
+                <div class="checkout-agreements-block">
+                    <!-- ko foreach: getRegion('after-googlepay-button') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!--/ko-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

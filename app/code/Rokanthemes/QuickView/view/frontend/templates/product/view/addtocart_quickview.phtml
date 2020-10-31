@@ -1,0 +1,114 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); 
+$config_point2 = $this->helper('Rokanthemes\RokanBase\Helper\Data')->getConfigData('setting_categories/categories/point2');
+$arr_config_point2 = explode(',', $config_point2);
+$qty = 1;
+$categories = $_product->getCategoryIds();
+if(count($categories) > 0 && count($arr_config_point2) > 0){
+	foreach($arr_config_point2 as $val1){
+		if(in_array(trim($val1), $categories)){
+			$qty = 3;
+			break;
+		}
+	}
+}
+?>
+<?php $buttonTitle = __('Add to cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <a class="qty-down-fixed-onclick qty-down" href="#"><i class="fa fa-minus"></i></a>
+            <div class="control">
+                <input type="number"
+                       name="qty"
+                       id="qty-quickview"
+                       maxlength="12"
+                       value="<?php /* @escapeNotVerified */ echo $qty * 1 ?>"
+                       title="<?php /* @escapeNotVerified */ echo __('Quantity') ?>" class="input-text qty"
+                       data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />
+            </div>
+			<a class="qty-up-fixed-onclick qty-up" href="#"><i class="fa fa-plus"></i></a>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button type="submit"
+                    title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button-quickview">
+                <span>
+                    <i class="icon-handbag icons"></i> 
+                    <?php /* @escapeNotVerified */ echo $buttonTitle ?>
+                </span>
+            </button>
+            <?php echo $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form_quickview": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+<script>
+    require([
+        'jquery',
+        'mage/mage',
+        'Magento_Catalog/product/view/validation',
+        'Magento_Catalog/js/catalog-add-to-cart'
+    ], function ($) {
+        'use strict';
+		var number_click = <?php echo $qty;?>;
+		$(".qty-down-fixed-onclick").click(function() {
+			var val_input = $(this).closest('div.field').find('#qty-quickview').val();
+			val_input = parseInt(val_input);
+			if(val_input <= number_click){
+				val_input = number_click;
+			}
+			else{
+				val_input = val_input - number_click;
+			}
+			$('div.field div.control #qty-quickview').val(val_input);
+			return false;
+		});
+		$(".qty-up-fixed-onclick").click(function() {
+			var val_input = $(this).closest('div.field').find('#qty-quickview').val();
+			val_input = parseInt(val_input);
+			val_input = val_input + number_click;
+			$('div.field div.control #qty-quickview').val(val_input);
+			return false;
+		});
+		
+        $('#product_addtocart_form_quickview').mage('validation', {
+            radioCheckboxClosest: '.nested',
+            submitHandler: function (form) {
+                var widget = $(form).catalogAddToCart({
+                    bindSubmit: false
+                });
+
+                widget.catalogAddToCart('submitForm', $(form));
+
+                return false;
+            }
+        });
+    });
+</script>
+<?php endif; ?>

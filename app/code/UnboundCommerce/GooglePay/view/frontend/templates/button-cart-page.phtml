@@ -1,0 +1,31 @@
+<?php
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var UnboundCommerce\GooglePay\Block\Minicart\Button $block
+ */
+
+$containerId = 'googlePayCartContainer';
+$configData = $block->getConfigData($containerId);
+$config = ['UnboundCommerce_GooglePay/js/googlepay-button' => $configData];
+$agreementsBlock = $this->getLayout()->createBlock('Magento\CheckoutAgreements\Block\Agreements');
+$agreementsBlock->setTemplate('Magento_CheckoutAgreements::additional_agreements.phtml');
+$agreementsBlock->setName('googlepay.minicart.agreements');
+?>
+
+<div data-mage-init='<?= json_encode($config) ?>' class="minicart-googlepay-button">
+    <div id=<?=$containerId?> align="center" class="googlepay-container"></div>
+    <?php if ($block->getIsInCart()): ?>
+        <form id="cart-gpay-agreements" class="form payments" novalidate="novalidate">
+            <div class="cart-gpay-agreements">
+                <?= $agreementsBlock->toHtml()?>
+            </div>
+        </form>
+    <?php endif; ?>
+</div>

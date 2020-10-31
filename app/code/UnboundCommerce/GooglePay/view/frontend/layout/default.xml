@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="minicart.addons">
+            <block class="UnboundCommerce\GooglePay\Block\Minicart\Addons" name="googlepay.cart.addons" template="UnboundCommerce_GooglePay::cart-addons-page.phtml">
+                <block class="Magento\Checkout\Block\Cart\Coupon" name="googlepay.cart.coupon" as="googlepay.cart.coupon" template="Magento_Checkout::cart/coupon.phtml"/>
+                <block class="Magento\CheckoutAgreements\Block\Agreements" name="googlepay.cart.agreements" as="googlepay.cart.agreements" template="Magento_CheckoutAgreements::additional_agreements.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,30 @@
+<?php
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var UnboundCommerce\GooglePay\Block\Minicart\Addons $block
+ */
+
+?>
+
+<br>
+<div class="minicart-googlepay-addons">
+    <?php if ($block->shouldRenderAgreements()): ?>
+        <form id="minicart-gpay-agreements" class="form payments" novalidate="novalidate">
+            <div class="minicart-gpay-agreements">
+                <?= $block->getChildHtml('googlepay.cart.agreements') ?>
+            </div>
+        </form>
+    <?php endif; ?>
+    <?php if ($block->shouldRenderCoupon()): ?>
+        <div class="gpay-discount">
+            <?= $block->getChildHtml('googlepay.cart.coupon') ?>
+        </div>
+    <?php endif; ?>
+</div>

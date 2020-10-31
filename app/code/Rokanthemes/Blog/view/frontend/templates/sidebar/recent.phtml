@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © 2015 RokanThemes.com. All rights reserved.
+
+ * @author RokanThemes Team <contact@rokanthemes.com>
+ */
+?>
+<?php
+/**
+ * Blog sidebar recent posts template
+ *
+ * @var $block \Rokanthemes\Blog\Block\Sidebar\Recent
+ */
+?>
+
+<?php
+	$_postCollection = $block->getPostCollection();
+?>
+<?php if ($_postCollection->count()) { ?>
+<div class="sidebar-left sidebar-post">
+	<div class="widget widget-post-tab" data-bind="scope: 'recemt-posts'">
+		<div class="title-post-tab">
+			<ul>
+				<li><a href="#">Recent</a></li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" role="tabpanel">
+				<ul class="list-post-tab">
+					<?php foreach ($_postCollection as $_post) { ?>
+						<li>
+							<div class="zoom-image-thumb">
+								<a title="<?php echo $block->escapeHtml($_post->getTitle()) ?>" href="<?php echo $_post->getPostUrl() ?>">
+									<img src="<?php echo $block->getMediaFolder().$_post->getThumbnailimage() ?>" alt="<?php echo $block->escapeHtml($_post->getTitle()) ?>">
+								</a>
+							</div>
+							<div class="post-tab-info">
+								<h3><a
+							   href="<?php echo $_post->getPostUrl() ?>">
+								<?php echo $block->escapeHtml($_post->getTitle()) ?>
+							</a></h3>
+								<span><?php echo date('F d Y', strtotime($_post->getPublishTime())); ?></span>
+							</div>
+						</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<?php } ?>

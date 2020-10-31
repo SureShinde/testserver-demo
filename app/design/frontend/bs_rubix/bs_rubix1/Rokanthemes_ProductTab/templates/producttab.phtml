@@ -1,0 +1,206 @@
+<?php
+use Magento\Framework\App\Action\Action;
+$enable = $block->getConfig('enabled');
+if($enable < 1) return ;
+$speed = $block->getConfig('speed');
+$qty = $block->getConfig('qty');
+$showCart = $block->getConfig('addtocart');
+$showWishlist = $block->getConfig('wishlist');
+$showCompare = $block->getConfig('compare');
+$show_navigation = $block->getConfig('navigation');
+$show_pagination = $block->getConfig('pagination');
+$auto = $block->getConfig('auto');
+$imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\Image');
+$image = 'new_products_content_widget_grid';
+$type = 'widget-new-grid';
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+$rows = $block->getConfig('row');
+$slide_limit = $block->getConfig('items');
+?>
+<?php $identify = 'identify-fixed-product'; ?>
+<div class="categorytab-container">
+		<ul class="tabs tabs<?php echo '-'.$identify;?>">
+			<?php
+			$k = 0;
+			$tab_contents = $block->getTabContent() ;
+			foreach($tab_contents as $tab) {
+			  ?>
+			  <li class="<?php if($k==0){ echo "active"; }?>" rel="product_tab_<?php echo $tab['id'];?>" class="<?php echo $tab['class']; ?>"><a href="#"><?php echo $tab['name'];?></a></li>
+			  <?php $k++;
+			}
+			?>
+		</ul>
+		<div class="row">
+			<div class="tab_container"> 
+				<?php foreach($tab_contents as $tab) { ?>
+				<div id="product_tab_<?php echo $tab['id'];?>" class="tab_content_<?php echo $identify; ?>"> 
+				<div class="owl-container product-grid">		
+					<div class="category_tab_slider owl-carousel">
+						<?php 
+						$newItems =  $tab['productInfo'];
+						$i=0;
+						foreach($newItems as $_item) { 
+							$productImage = $block->getImage($_item, $image);
+						?>
+						<?php if($i++%$rows==0) { ?> <div class="item"> <?php } ?>
+							<div class="product-item">
+								<div class="item">
+								<div class="product-photo">
+								
+									<a href="<?php /* @escapeNotVerified */ echo $_item->getProductUrl() ?>" class="product-thumb-link">
+										<?php $productImageThumb = $block->getImage($_item, 'category_page_grid-1');?>
+										<span class="image0 image-switch">
+											<?php echo $productImage->toHtml(); ?>
+										</span>
+										<span class="image1 image-switch">
+											<?php echo $productImageThumb->toHtml(); ?>
+										</span>
+									</a>
+									
+								<?php if ($this->helper('Rokanthemes\QuickView\Helper\Data')->isEnable()){ ?>								
+								<div class="addto-links-icons visible-onhover" data-role="add-to-links">
+									<ul class="add-to-links">
+											<li class="quickview-product">
+												<a  data-role="quickview-button" data-id="<?php echo $_item->getId(); ?>" href="<?php echo $block->getUrl('quickview/product/quickview/id/' . $_item->getId()) ?>" title="" class="ajax diamond tooltip-hover" data-placement="top" data-original-title="<?php echo ('Quick View') ?>"><?php echo ('Quick View') ?></a>
+											</li>																	
+									</ul>
+								</div>
+								<?php } ?>	
+							
+								</div>
+								<div class="product-info">
+									<div class="product-name">
+										<strong class="product-item-name">
+											<a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+											   href="<?php echo $block->getProductUrl($_item) ?>"
+											   class="product-item-link">
+												<?php echo $block->escapeHtml($_item->getName()) ?>
+											</a>
+										</strong>
+									</div>
+									<?php if ($templateType): ?>
+										<?php echo $block->getReviewsSummaryHtml($_item, $templateType,true); ?>
+									<?php endif; ?>
+									 <?php
+										echo $block->getProductPrice($_item);
+									 ?>
+									 <?php if ($showWishlist ): ?>
+										<ul class="action-bottom">									
+												<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+												<li>
+													<a href="#"
+													   data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'
+													   class="action towishlist" data-action="add-to-wishlist"
+													   title="<?php echo __('Add to Wishlist') ?>">
+														<i class="icon-heart"></i>
+													</a>
+													</li>
+												<?php endif; ?>			
+											<?php endif; ?>	
+										</ul>	
+									<div class="actions-add-cart">
+										<div class="action-inner">
+											<?php if ($showCart): ?>
+												<div class="actions-primary"> 
+													<?php if ($_item->isSaleable()): ?>
+														<?php
+														  $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+														  $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()]);
+														  $postParams = json_decode($postData, true);
+														?>
+														<?php if (!$_item->getData('has_options') ){ ?>
+														<form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+														  <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+														  <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+														  <?php echo $block->getBlockHtml('formkey')?>
+														  <button type="submit"
+															  title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+															  class="action tocart">
+															<span><?php echo __('Add to Cart') ?></span>
+														  </button>
+														</form>
+														<?php }else{ ?>
+														<button type="button"
+															onclick="location.href='<?php /* @escapeNotVerified */ echo $postParams['action']; ?>'"
+															  title="<?php echo $block->escapeHtml(__('View Detail')); ?>"
+															  class="action tocart">
+															<span><?php echo __('View Detail') ?></span>
+														  </button>
+														<?php } ?>
+													<?php else: ?>
+														<?php if ($_item->getIsSalable()): ?>
+															<div class="stock available"><span><?php echo __('In stock') ?></span></div>
+														<?php else: ?>
+															<div class="stock unavailable"><span><?php echo __('Out of stock') ?></span></div>
+														<?php endif; ?>
+													<?php endif; ?>
+												</div>
+											<?php endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+								<?php if($i%$rows==0 || $i == count($newItems)) { ?> </div> <?php }?>
+						<?php 
+						}
+						?>
+					</div>
+				</div>	
+					
+				 </div>
+				 <?php }?>
+			</div>
+		</div>
+</div>
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+	<script type="text/x-magento-init">
+	{
+		"[data-role=tocart-form], .form.map.checkout": {
+			"catalogAddToCart": {}
+		}
+	}
+	</script>
+<?php endif; ?>
+<script type="text/javascript">
+require([
+	'jquery',
+	'mage/mage',
+	'rokanthemes/owl',
+	'rokanthemes/lazyloadimg'
+], function ($) {
+	'use strict';
+
+	jQuery(".tab_content_<?php echo $identify; ?>").hide();
+	jQuery(".tab_content_<?php echo $identify; ?>:first").show(); 
+
+	jQuery("ul.tabs<?php echo '-'.$identify;?> li a").click(function() {
+		jQuery("ul.tabs<?php echo '-'.$identify;?> li").removeClass("active");
+		jQuery(this).closest('li').addClass("active");
+		jQuery(".tab_content_<?php echo $identify; ?>").hide();
+		var activeTab = $(this).closest('li').attr("rel"); 
+		jQuery("#"+activeTab).fadeIn();
+		$("img.lazy").lazyload({
+			skip_invisible: false
+		});
+		return false;
+	});
+	
+	 jQuery(".tab_content_<?php echo $identify; ?> .category_tab_slider").owlCarousel({
+		lazyLoad:true,
+		items : <?php echo $slide_limit; ?>,
+		autoPlay : <?php if($auto) echo 'true'; else echo 'false'; ?>,
+		slideSpeed : <?php if($speed) echo $speed; else echo '500'; ?>,
+		navigation : <?php if($show_navigation) echo 'true'; else echo 'false'; ?>,
+		stopOnHover : true,
+		pagination : <?php if($show_pagination) echo 'true'; else echo 'false'; ?>,
+		itemsDesktop : [1199,4],
+		itemsDesktopSmall : [992,3],
+		itemsTablet: [767,2],
+		itemsMobile : [479,1]
+	});
+	
+});
+ 
+
+</script> 

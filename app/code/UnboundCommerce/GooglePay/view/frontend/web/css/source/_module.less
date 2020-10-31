@@ -1,0 +1,65 @@
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+
+& when (@media-common = true) {
+
+    .googlepay-button-container {
+        display: table;
+        margin: 0 0 22px;
+
+        .checkout-shipping-address & {
+            margin: 0 0;
+        }
+    }
+
+    .google-pay-container {
+        button {
+            background-repeat : no-repeat;
+            background-position : center center;
+            background-origin : content-box;
+            background-size : contain;
+            border-bottom-width : 0px;
+            border-bottom-style : none;
+            border-left-width : 0px;
+            border-left-style : none;
+            border-top-width : 0px;
+            border-top-style : none;
+            border-right-width : 0px;
+            border-right-style : none;
+            width: 100%;
+        }
+    }
+
+    .gpay-discount {
+        &:extend(.abs-discount-block all);
+
+        margin: 0 0;
+        padding: 0 0;
+        width: 100%;
+        .block {
+            &.giftcard {
+                &.active {
+                    .lib-css(padding-bottom, @indent__xl);
+                }
+            }
+
+            .title {
+                border-top: none;
+
+                &:after {
+                    display: inline;
+                    margin-left: @indent__s;
+                    position: static;
+                }
+            }
+
+            .content {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+

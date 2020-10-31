@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceBlock name="top.search" remove="true"/>
+		<referenceContainer name="header-wrapper">
+			<block class="Rokanthemes\SearchSuiteAutocomplete\Block\Autocomplete" name="rokanthemes-search-autocomplete-wrapper" as="topSearch" template="Rokanthemes_SearchSuiteAutocomplete::autocomplete.phtml"/>
+		</referenceContainer>
+		<move element="rokanthemes-search-autocomplete-wrapper" destination="toki_header" />
+    </body>
+</page>

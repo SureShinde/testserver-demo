@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="stripe_publishable_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Publishable Key</label>
+        <config_path>payment/googlepay_stripe/publishable_key</config_path>
+        <tooltip><![CDATA[Please enter the Publishable Key which you will find in your Stripe Dashboard under the <b>Developers > API keys > Standard Keys</b> section.]]></tooltip>
+        <depends>
+            <field id="gateway_id">stripe</field>
+        </depends>
+    </field>
+    <field id="stripe_secret_key" translate="label" type="obscure" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Secret Key</label>
+        <config_path>payment/googlepay_stripe/secret_key</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[Please enter the Secret Key which you will find in your Stripe Dashboard under the <b>Developers > API keys > Standard Keys</b> section.]]></tooltip>
+        <comment><![CDATA[You will need to replace the test keys with your live keys for production uses. Please check <a href="https://stripe.com/docs/keys#api-keys">Stripe's documentation</a> for more information on how to obtain your API keys.]]></comment>
+        <depends>
+            <field id="gateway_id">stripe</field>
+        </depends>
+    </field>
+</include>

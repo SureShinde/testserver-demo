@@ -1,0 +1,36 @@
+<?php
+/**
+ * PHP version 7
+ * Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+
+namespace UnboundCommerce\GooglePay\Service\Gateway\moneris;
+
+// mpgAvsInfo ############################################
+
+class mpgAvsInfo
+{
+
+    var $params;
+    var $avsTemplate = array('avs_street_number','avs_street_name','avs_zipcode','avs_email','avs_hostname','avs_browser','avs_shiptocountry','avs_shipmethod','avs_merchprodsku','avs_custip','avs_custphone');
+
+    public function __construct($params)
+    {
+        $this->params = $params;
+    }
+
+    public function toXML()
+    {
+        $xmlString = "";
+
+        foreach ($this->avsTemplate as $tag) {
+            //will only add to the XML the tags from the template that were also passed in by the merchant
+            if (array_key_exists($tag, $this->params)) {
+                $xmlString .= "<$tag>". $this->params[$tag] ."</$tag>";
+            }
+        }
+
+        return "<avs_info>$xmlString</avs_info>";
+    }
+}//end class

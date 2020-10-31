@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="braintree_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Braintree Merchant Id</label>
+        <config_path>payment/googlepay_braintree/gateway_merchant_id</config_path>
+        <tooltip><![CDATA[Please enter the Braintree Merchant Id you want to use to process the transactions. You will find your Merchant Id in your Braintree Control Panel under <b>Settings > API > Keys > Client-Side Encryption Keys > Merchant ID</b>.]]></tooltip>
+        <comment><![CDATA[In order for Braintree to accept payments via Google Pay in sandbox or production, you will need to enable it in the Braintree Control Panel.<br>Please check <a href="https://developers.braintreepayments.com/guides/google-pay/configuration/javascript/v3">Braintree's documentation</a> for more information on Google Pay Setup.]]></comment>
+        <depends>
+            <field id="gateway_id">braintree</field>
+        </depends>
+    </field>
+    <field id="braintree_client_key" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Client key</label>
+        <config_path>payment/googlepay_braintree/client_key</config_path>
+        <tooltip><![CDATA[Please enter the Client key which you will find in your Braintree Control Panel under <b>Settings > API > Keys > Tokenization Keys</b>.]]></tooltip>
+        <depends>
+            <field id="gateway_id">braintree</field>
+        </depends>
+    </field>
+    <field id="braintree_public_key" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Public Key</label>
+        <config_path>payment/googlepay_braintree/public_key</config_path>
+        <tooltip><![CDATA[Please enter the Public key which you will find in your Braintree Control Panel under <b>Settings > API > Keys > API Keys > Public Key</b>.]]></tooltip>
+        <depends>
+            <field id="gateway_id">braintree</field>
+        </depends>
+    </field>
+    <field id="braintree_private_key" translate="label" type="obscure" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Private Key</label>
+        <config_path>payment/googlepay_braintree/private_key</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[Please enter the Private key which you will find in your Braintree Control Panel under <b>Settings > API > Keys > API Keys > Private Key</b>.]]></tooltip>
+        <comment><![CDATA[Please check <a href="https://articles.braintreepayments.com/control-panel/important-gateway-credentials">Braintree's documentation</a> for more information on Braintree's Gateway Credentials.]]></comment>
+        <depends>
+            <field id="gateway_id">braintree</field>
+        </depends>
+    </field>
+</include>

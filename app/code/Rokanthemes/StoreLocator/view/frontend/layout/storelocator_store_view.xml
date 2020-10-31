@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright © 2019 Rokanthemes. All rights reserved.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+        	<block class="Magento\Cms\Block\Block" name="banner.storelocator" before="storelocator-stores-view">
+			    <arguments>
+			        <argument name="block_id" xsi:type="string">banner-storelocator</argument>
+			    </arguments>
+			</block>
+			<block class="Rokanthemes\StoreLocator\Block\Store\LocationStoresView" name="storelocator-stores-view" template="Rokanthemes_StoreLocator::store/view.phtml">
+				<block class="Rokanthemes\StoreLocator\Block\Store\LocationStoresView" name="storelocator-stores-list-view" as="store_list_view" template="Rokanthemes_StoreLocator::store/info.phtml" />
+            </block>
+        </referenceContainer> 
+    </body>
+</page>

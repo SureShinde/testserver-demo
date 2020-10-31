@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © 2015 RokanThemes.com. All rights reserved.
+
+ * @author RokanThemes Team <contact@rokanthemes.com>
+ */
+
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php
+/**
+ * Blog post list template
+ *
+ * @var $block \Rokanthemes\Blog\Block\Post\PostList
+ */
+?>
+<?php
+$_postCollection = $block->getPostCollection();
+?>
+<?php if (!$_postCollection->count()): ?>
+    <div class="message info empty"><div><?php echo __('We can\'t find posts matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getAdditionalHtml() ?>
+    <div class="post-list-wrapper">
+        <?php $iterator = 1; ?>
+        <div class="blog-list-post box-blog2">
+			<div class="row">
+				<?php foreach ($_postCollection as $_post): ?>
+					<?php echo $block->getPostHtml($_post) ?>
+				<?php endforeach; ?>
+			</div>
+        </div>
+    </div>
+
+    <?php echo $block->getToolbarHtml() ?>
+<?php endif; ?>

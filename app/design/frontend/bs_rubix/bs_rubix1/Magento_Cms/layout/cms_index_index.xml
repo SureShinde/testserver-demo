@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceContainer name="page.top">
+			<container name="content.top.home" label="content top home" htmlTag="div" htmlClass="content_top_home">	
+				<block class="Magento\Framework\View\Element\Template" name="top_home" template="Magento_Cms::top-home.phtml"/>
+			</container>
+		</referenceContainer>
+		<move element="content.top.home" destination="page.top" after="-"/>
+		<referenceContainer name="page.top">
+			<container name="section_top_banner" label="content top banner" htmlTag="div" htmlClass="section_top_banner">
+				<container name="top_banner" htmlTag="div" htmlClass="top_banner">
+					<block class="Rokanthemes\SlideBanner\Block\Slider" name="homepageslider" as="slideshow">
+						<arguments>
+							<argument name="slider_id" xsi:type="string">homepageslider</argument>
+						</arguments>
+					</block>
+				</container>
+			</container>
+		</referenceContainer>
+    </body>
+</page>

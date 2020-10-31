@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="index">
+        <job name="googlepay_order_status_updater" instance="UnboundCommerce\GooglePay\Cron\Cron" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="googlepay_daily_cron" instance="UnboundCommerce\GooglePay\Cron\Cron" method="dailyCron">
+            <schedule>0 4 */1 * *</schedule>
+        </job>
+    </group>
+</config>

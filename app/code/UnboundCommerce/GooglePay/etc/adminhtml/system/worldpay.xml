@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="worldpay_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Worldpay Merchant Id</label>
+        <config_path>payment/googlepay_worldpay/gateway_merchant_id</config_path>
+        <comment><![CDATA[Please check <a href="http://support.worldpay.com/support/kb/gg/merchantadmininterface/Merchant%20Interface%20Guide.htm#7integration/pay_with_google.htm">Worldpay's documentation</a> for more information on how to generate a unique Merchant Id.]]></comment>
+        <depends>
+            <field id="gateway_id">worldpay</field>
+        </depends>
+    </field>
+    <field id="worldpay_username" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Username</label>
+        <config_path>payment/googlepay_worldpay/username</config_path>
+        <depends>
+            <field id="gateway_id">worldpay</field>
+        </depends>
+    </field>
+    <field id="worldpay_password" translate="label" type="obscure" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Password</label>
+        <config_path>payment/googlepay_worldpay/password</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <comment><![CDATA[Please check <a href="http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/directintegration/quickstart.htm">Worldpay's documentation</a> for more information on how to get your Worldpay credentials.]]></comment>
+        <depends>
+            <field id="gateway_id">worldpay</field>
+        </depends>
+    </field>
+</include>

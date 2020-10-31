@@ -1,0 +1,29 @@
+{
+  "name": "rltsquare/best-seller",
+  "description": "This extension allows merchants to display the best-selling products of their store so customers know which products are trending, and bought frequently by other customers."
+,
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0"
+  },
+  "type":"magento2-module",
+  "version": "1.0.0",
+  "license":[
+    "proprietary"
+  ],
+  "authors":[
+    {
+      "name" : "Ali",
+      "email" : "ali.riaz@rltsquare.com",
+      "homepage" : "https://www.rltsquare.com",
+      "role" : "Developer"
+    }
+  ],
+  "autoload":{
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RLTSquare\\BestSeller\\" : ""
+    }
+  }
+}

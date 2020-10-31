@@ -1,0 +1,81 @@
+<?php 
+	$enable = $block->getConfig('enabled');
+	if($enable < 1) return ; 
+	$items = $block->getConfig('items');
+	$speed = $block->getConfig('speed');
+	$qty = $block->getConfig('qty');
+	$showCart = $block->getConfig('addtocart');
+	$showWishlist = $block->getConfig('wishlist');
+	$showCompare = $block->getConfig('compare');
+	$show_navigation = $block->getConfig('navigation');
+	$show_pagination = $block->getConfig('pagination');
+	$auto = $block->getConfig('auto');
+	$rows = $block->getSlideRow();
+	$slide_limit = $block->getSlideLimit();
+	$title = $block->getTitle(); 
+	$description= $block->getDescription(); 
+	$identify = trim($block->getIdentify()); 
+	$categoryIds = $block->getCategoryIds();
+	$categoryIds = explode(',', $categoryIds);	
+	$desktop = $this->getConfig('itemsDesktop');
+	$desktop_small = $this->getConfig('itemsDesktopSmall');
+	$tablet = $this->getConfig('itemsTablet');
+	$mobile = $this->getConfig('itemsMobile');
+?>
+<div class="categories-thumbnails">
+	<div class="row">
+		<div class="shop_by_cat">
+			<?php 
+				if(count($categoryIds) > 0) {
+					foreach($categoryIds as $key => $cate_id) {
+			?>
+			<div class="popcat-box">
+				<?php 
+					$cate_model =  $block->getCategory($cate_id);
+					echo '
+						<a class="shop-by-icon" href="'.$cate_model->getUrl().'" style="background:url('.$this->helper('Rokanthemes\Categorytab\Helper\Data')->getIconImageUrl($cate_model).')"></a>
+						<div class="cat-name">
+							<h3><a href="'.$cate_model->getUrl().'">'.$cate_model->getName().'</a></h3>
+							<p class="qty">('.$cate_model->getProductCount(). ' products'.')</p> 
+						</div>
+					';
+					
+			   ?>
+			</div>
+			<?php 
+					}
+				}
+			?>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+require([
+	'jquery',
+	'mage/mage',
+	'rokanthemes/owl',
+], function ($) {
+	'use strict';
+	
+	 jQuery(".shop_by_cat").owlCarousel({
+		items : <?php echo $slide_limit; ?>,
+		autoPlay : true,
+		slideSpeed : <?php if($speed) echo $speed; else echo '500'; ?>,
+		navigation : true,
+		stopOnHover : true,
+		pagination : false,
+		items : 6,
+		itemsCustom:[
+			[1199,6],
+			[991,5],
+			[768,4],
+			[479,3],
+			[400,2],
+			[0,1],
+		],
+	});
+	
+});
+ 
+</script> 

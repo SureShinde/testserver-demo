@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ajaxsuite>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <ajaxcompare>
+                <enabled>1</enabled>
+            </ajaxcompare>
+            <ajaxwishlist>
+                <enabled>1</enabled>
+            </ajaxwishlist>
+            <ajaxcart>
+                <enabled>1</enabled>
+                <success_action>popup</success_action>
+            </ajaxcart>
+        </ajaxsuite>
+    </default>
+</config>

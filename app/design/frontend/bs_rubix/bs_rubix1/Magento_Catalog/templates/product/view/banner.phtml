@@ -1,0 +1,24 @@
+<?php
+$_product = $block->getProduct();
+if($_product->getData('ambientazione') != '' && $_product->getData('ambientazione') != 'no_selection'){
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$url =  $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+<div class="banner">
+	<div class="banner-images">
+		<img src="<?php echo $url.'catalog/product'.$_product->getData('ambientazione');?>" alt="" title="">
+	</div>
+</div>
+<?php }else{ ?>
+<script>
+    require([
+        'jquery',
+        'mage/mage'
+    ], function ($) {
+        'use strict';
+		$(".catalog-product-view .product-view").css("margin-top", 0);
+    });
+</script>
+<?php } ?>

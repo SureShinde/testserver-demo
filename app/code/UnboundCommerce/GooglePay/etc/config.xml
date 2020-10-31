@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <googlepay>
+                <model>GooglePayFacade</model>
+                <merchant_gateway_key backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
+                <order_status>processing</order_status>
+                <payment_action>authorize_capture</payment_action>
+                <title>Google Pay</title>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_void>1</can_void>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_cancel>1</can_cancel>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <sort_order>0</sort_order>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <cc_types>AE,DI,IC,JCB,MC,VI</cc_types>
+                <debug>0</debug>
+                <paymentInfoKeys>gatewayId,paymentMethodDescription,email</paymentInfoKeys>
+                <privateInfoKeys>gatewayId</privateInfoKeys>
+            </googlepay>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © 2019 Rokanthemes. All rights reserved. 
+ */
+
+$locations = $block->getStoreLocator();
+$i = 1;
+?>
+<div id="store_list">
+    <?php foreach ($locations as $location): ?>
+        <div class="list" name="mapLocation" data-id="<?php echo $i ?>">
+			<?php 
+				if($location->getImageStore()){ 
+					$image = json_decode($location->getImageStore());
+				}else{
+					$image = $block->getViewFileUrl('Rokanthemes_StoreLocator::images/shop.jpg');
+				}
+			?>
+			<div class="image">
+				<img src="<?php echo $image ?>"/>
+            </div>
+            <div class="location-information"> 
+				<h2><?php echo $this->escapeHtml($location->getName()); ?></h2>
+				<?php if (trim($location->getCity())) { ?>
+					<div><strong><?php echo __('City') ?>:</strong> <?php echo $this->escapeHtml($location->getCity()); ?></div>
+				<?php }?>
+				<?php if (trim($location->getPostcode())) { ?>
+					<div><strong><?php echo __('Zip') ?>: </strong><?php echo $this->escapeHtml($location->getPostcode()); ?></div>
+				<?php }?>
+				<?php if (trim($location->getCountry())) { ?>
+					<div><strong><?php echo __('Country') ?>: </strong><?php echo $this->escapeHtml($location->getCountry()); ?></div>
+				<?php }?>
+				<?php if (trim($location->getAddress())) { ?>
+					<div><strong><?php echo __('Address') ?>: </strong><?php echo $this->escapeHtml($location->getAddress()); ?></div>
+				<?php }?> 
+				
+				<div class="view-detail"><a href="<?php echo $this->getUrl('store-locator/store/view/key/'.$location->getId()) ?>"><?php echo __('View Detail') ?></a></div>
+			</div>
+			<?php $time_today = $block->getTimeStoreLocator($location->getStoreId()) ?>
+			<div class="today_time">
+                <?= __('Opening Hours:')?> 
+				<?php if($time_today['today'] == 0){?><?php echo __('Closed') ?><?php }else{ ?><?php if($time_today['time_today']->from->hours < 10){echo '0'.$time_today['time_today']->from->hours;} ?> : <?php if($time_today['time_today']->from->minutes < 10){echo '0'.$time_today['time_today']->from->minutes;} ?> AM - <?php if($time_today['time_today']->to->hours < 10){echo '0'.$time_today['time_today']->to->hours;} ?> : <?php if($time_today['time_today']->to->minutes < 10){echo '0'.$time_today['time_today']->to->minutes;} ?> PM <?php }?>
+				<div class="locator_arrow"></div>
+			</div>
+			<div class="all_today_time" style="display:none;">
+				<?php echo $block->getAllTimeStoreLocator($location->getStoreId()); ?>
+			</div>
+        </div>
+        <?php $i++ ?>
+    <?php endforeach; ?>
+</div>

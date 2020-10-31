@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rokanthemes_StoreLocator::storelocator" title="Store Locator" translate="title" module="Rokanthemes_StoreLocator" sortOrder="10" parent="Rokanthemes_RokanBase::rokanbase" resource="Rokanthemes_StoreLocator::configuration" />
+        <add id="Rokanthemes_StoreLocator::stores_list" title="Manage Stores" translate="title" module="Rokanthemes_StoreLocator" sortOrder="530" parent="Rokanthemes_StoreLocator::storelocator" action="storelocator/stores" resource="Rokanthemes_StoreLocator::stores" />
+		<add id="Rokanthemes_StoreLocator::configuration" title="Configuration" translate="title" module="Rokanthemes_StoreLocator" sortOrder="540" parent="Rokanthemes_StoreLocator::storelocator" action="adminhtml/system_config/edit/section/storelocator" resource="Rokanthemes_StoreLocator::configuration" />
+	</menu>
+</config>

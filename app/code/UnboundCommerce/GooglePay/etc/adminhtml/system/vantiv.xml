@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PHP version 7
+* Copyright © Mobegic Inc. DBA Unbound Commerce.
+ * All rights reserved.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <field id="vantiv_gateway_merchant_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Vantiv Merchant Id</label>
+        <config_path>payment/googlepay_vantiv/gateway_merchant_id</config_path>
+        <depends>
+            <field id="gateway_id">vantiv</field>
+        </depends>
+    </field>
+    <field id="vantiv_pay_page_id" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>PayPage Id</label>
+        <config_path>payment/googlepay_vantiv/pay_page_id</config_path>
+        <tooltip><![CDATA[The PayPage Id will be provided by your Vantiv integration consultant.]]></tooltip>
+        <depends>
+            <field id="gateway_id">vantiv</field>
+        </depends>
+    </field>
+    <field id="vantiv_username" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Username</label>
+        <config_path>payment/googlepay_vantiv/username</config_path>
+        <tooltip><![CDATA[You can use a random value for username in the sandbox environment.]]></tooltip>
+        <depends>
+            <field id="gateway_id">vantiv</field>
+        </depends>
+    </field>
+    <field id="vantiv_password" translate="label" type="obscure" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Password</label>
+        <config_path>payment/googlepay_vantiv/password</config_path>
+        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+        <tooltip><![CDATA[You can use a random value for password in the sandbox environment.]]></tooltip>
+        <depends>
+            <field id="gateway_id">vantiv</field>
+        </depends>
+    </field>
+    <field id="vantiv_report_group" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+        <label>Report Group</label>
+        <config_path>payment/googlepay_vantiv/report_group</config_path>
+        <tooltip><![CDATA[You use Report Groups to separate your transactions into different categories, so you can view the financial reports by your specific report group names.]]></tooltip>
+        <comment><![CDATA[<b>NOTE:</b> The reportGroup attribute is case and space sensitive. A reportGroup = "Picture Frame" is a different report group than a reportGroup = "pictureframe".]]></comment>
+        <depends>
+            <field id="gateway_id">vantiv</field>
+        </depends>
+    </field>
+</include>

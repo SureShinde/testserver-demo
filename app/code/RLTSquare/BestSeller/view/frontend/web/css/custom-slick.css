@@ -1,0 +1,55 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.slick-track {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.slider {
+    width: 100%;
+    margin: 100px auto;
+}
+
+.slick-slide {
+    margin: 0px 20px;
+}
+
+.slick-slide img {
+    width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: black;
+}
+
+.slick-slide {
+    transition: all ease-in-out .3s;
+    opacity: 1;
+}
+
+.slick-active {
+    opacity: 1;
+}
+
+.slick-current {
+    opacity: 1;
+}
+
+.product-item .tocart {
+    margin-top: 10px;
+}
+
+ul.magictabs.toggle-content {
+    float: right;
+}
+
+.history .slick-track {
+    float: left;
+}

@@ -1,0 +1,27 @@
+<?php
+/**
+ * @var $block \Rokanthemes\AjaxSuite\Block\AjaxCart\Success
+ */
+$_product = $block->getProduct();
+$item = $block->getQuoteItem();
+?>
+<div class="wrapper-success">
+	<div class="product-information">
+		<?php echo $block->getChildHtml('product_image'); ?>
+		<div class="product-name">
+				<?php
+				if($item){ ?>
+					<div class="pupup-suc-added-to-your-bag"><?php echo __('Added to your bag');?></div>
+					<div class="pupup-suc-added-ajax-cart-product-name"><a title="<?php echo $block->escapeHtml($item->getName());?>" href="<?php echo $_product->getProductUrl();?>"><?php echo $item->getName();?></a></div>
+					<div class="pupup-suc-added-ajax-cart-qty-price">
+						<div class="pupup-suc-added-ajax-cart-qty"><?php echo __('Qty');?>: <?php echo $item->getQty(); ?></div>
+						<div class="pupup-suc-added-ajax-cart-price"><?php echo $block->getFormatedPrice($item->getPrice()); ?></div>
+					</div>
+				<?php } ?>
+		</div>
+	</div>
+    <div class="ajaxsuite-buttons">
+        <button id="button_continue_shopping"><?= __('Continue Shopping'); ?></button>
+        <button onclick="window.location.href='<?php echo $this->getUrl('checkout/cart'); ?>';"><?= __('View Cart'); ?></button>
+    </div>
+</div>

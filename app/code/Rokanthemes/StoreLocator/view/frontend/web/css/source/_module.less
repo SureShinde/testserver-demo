@@ -1,0 +1,213 @@
+
+// Store Locator
+
+#locator_filter{
+	.column_left{
+		.block-content{
+			padding: 15px 15px;
+			margin-bottom: 20px;
+			background: #f8f8f8;
+			width: 100%;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: space-between;
+			#current-address{
+				flex: 1;
+				.input-box{
+					#locator-search{
+						border-radius:5px 0 0 5px;
+					}
+				}
+			}
+			.bstlocator_input{
+				.button{
+					height: 50px;
+				}
+			}
+		}
+		.center{
+			overflow: auto;
+			height: 100vh;
+			max-height: 600px;
+			#store_list{
+				.list{
+					display: flex;
+					margin-bottom: 15px;
+					overflow: auto;
+					font-size: 14px;
+					background: #f6f6f6;
+					cursor: pointer;
+					flex-wrap: wrap;
+					.image{
+						flex: 0 0 40%;
+						max-width: 150px;
+						margin: 15px;
+					}
+					.location-information{
+						flex: 1;
+						margin: 15px;
+						margin-left: 0;
+						div {
+							a{
+								font-weight: 500;
+								font-size: 1.8rem;
+								margin-bottom: 20px;
+							}
+						}
+					}
+					.today_time{
+						width: 100%;
+						position: relative;
+						display: -webkit-flex;
+						display: -ms-flexbox;
+						display: flex;
+						-webkit-box-pack: justify;
+						-ms-flex-pack: justify;
+						align-items:center;
+						margin-top: 5px;
+						padding: 5px 15px 5px 15px;
+						background: #dfdfdf;
+						&:before{
+							content: "\f017";
+							font: normal normal normal 14px/1 FontAwesome;
+							margin-right: 10px;
+						}
+						.locator_arrow{
+							margin-left: auto;
+							&:before{
+								content: '\e622';
+								display: inline-block;
+								font-family: 'icons-blank-theme';
+								font-size: 30px;
+								line-height: 1;
+								vertical-align: top;
+								margin-left: 0;
+							}
+						}
+					}
+					.all_today_time{
+						width: 100%;
+						position: relative;
+						display: -webkit-flex;
+						display: -ms-flexbox;
+						display: flex;
+						-webkit-box-pack: justify;
+						-ms-flex-pack: justify;
+						margin-top: 10px;
+						padding: 15px;
+						background: #dfdfdf;
+					    flex-direction: column;
+						> div{
+							padding: 3px 0;
+						    text-transform: capitalize;
+						}
+						.active{
+							font-weight: 500;
+						}
+					}
+				}
+				
+			}
+		}
+	}
+	.column_right{
+		#bst-map-load{
+			button{
+				background: #fff !important;
+				color: inherit !important;
+				border-color: inherit !important;
+			}
+		}
+	}
+}
+#locator_filter-store{
+	.column_right{
+		#bst-map-view{
+			button{
+				background: #fff !important;
+				color: inherit !important;
+				border-color: inherit !important;
+			}
+		}
+	}
+	.column_left{
+		#store_list_view{
+			.today_time{
+				width: 100%;
+				position: relative;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-pack: justify;
+				-ms-flex-pack: justify;
+				align-items:center;
+				margin-top: 5px;
+				padding: 5px 15px 5px 15px;
+				background: #dfdfdf;
+				cursor:pointer;
+				&:before{
+					content: "\f017";
+					font: normal normal normal 14px/1 FontAwesome;
+					margin-right: 10px;
+				}
+				.locator_arrow{
+					margin-left: auto;
+					&:before{
+						content: '\e622';
+						display: inline-block;
+						font-family: 'icons-blank-theme';
+						font-size: 30px;
+						line-height: 1;
+						vertical-align: top;
+						margin-left: 0;
+					}
+				}
+			}
+			.all_today_time{
+				width: 100%;
+				position: relative;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-pack: justify;
+				-ms-flex-pack: justify;
+				margin-top: 10px;
+				padding: 15px;
+				background: #dfdfdf;
+				flex-direction: column;
+				> div{
+					padding: 3px 0;
+				    text-transform: capitalize;
+				}
+				.active{
+					font-weight: 500;
+				}
+			}
+			.location-information{
+				flex: 1;
+				margin: 15px;
+				margin-left: 0;
+				div {
+					a{
+						font-weight: 500;
+						font-size: 1.8rem;
+						margin-bottom: 20px;
+					}
+				}
+			}
+
+		}
+	}
+}
+@media (max-width: 992px), print{
+	#locator_filter,#locator_filter-store{
+	    flex-direction: column;
+		.column_left,.column_right{
+			width: 100% !important;
+		}
+		.column_right{
+			order: -1;
+			padding: 0 0 30px !important;
+		}
+	}
+}
